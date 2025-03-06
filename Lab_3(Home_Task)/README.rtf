@@ -1,0 +1,304 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2821
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 .SFNS-Bold;\f2\fnil\fcharset0 .SFNS-Regular;
+\f3\froman\fcharset0 TimesNewRomanPSMT;\f4\fnil\fcharset0 HelveticaNeue-Bold;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red14\green14\blue14;}
+{\*\expandedcolortbl;;\csgray\c0;\cssrgb\c6700\c6700\c6700;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf2 1-Blow on the sensor and observe whether it detects minor changes in temperature\
+and humidity.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+Yes, Minor changes are observed.\
+Humidity is directly proportional to the blow.\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f1\b\fs30 \cf3 -> Why Do We Use Interrupts?
+\f2\b0\fs28 \
+\
+Interrupts are used in microcontrollers to handle critical or time-sensitive events efficiently. Instead of continuously checking for an event (polling), the microcontroller can focus on executing tasks and only respond when an interrupt occurs. This improves performance and responsiveness.\
+\
+
+\f1\b\fs30 How Interrupts Lower Processing Cost?
+\f2\b0\fs28 \
+\pard\tqr\tx260\tx420\li420\fi-420\sl324\slmult1\sb240\partightenfactor0
+
+\f3 \cf3 	1.	
+\f4\b Eliminates Polling:
+\f2\b0 \
+\pard\tqr\tx500\tx660\li660\fi-660\sl324\slmult1\sb240\partightenfactor0
+\cf3 	\'95	Without interrupts, the microcontroller must continuously check (poll) for an event, consuming processing time even when no event occurs.\
+	\'95	With interrupts, the microcontroller can perform other tasks and respond 
+\f4\b only when needed
+\f2\b0 , reducing wasted processing cycles.\
+\pard\tqr\tx260\tx420\li420\fi-420\sl324\slmult1\sb240\partightenfactor0
+
+\f3 \cf3 	2.	
+\f4\b Efficient Power Usage:
+\f2\b0 \
+\pard\tqr\tx500\tx660\li660\fi-660\sl324\slmult1\sb240\partightenfactor0
+\cf3 	\'95	The microcontroller can enter low-power sleep modes and wake up only when an interrupt is triggered, conserving energy.\
+\pard\tqr\tx260\tx420\li420\fi-420\sl324\slmult1\sb240\partightenfactor0
+
+\f3 \cf3 	3.	
+\f4\b Faster Response Time:
+\f2\b0 \
+\pard\tqr\tx500\tx660\li660\fi-660\sl324\slmult1\sb240\partightenfactor0
+\cf3 	\'95	Interrupts ensure the microcontroller reacts 
+\f4\b immediately
+\f2\b0  to critical events, such as button presses, sensor data changes, or communication signals, without delay.\
+\pard\tqr\tx260\tx420\li420\fi-420\sl324\slmult1\sb240\partightenfactor0
+
+\f3 \cf3 	4.	
+\f4\b Parallel Task Execution:
+\f2\b0 \
+\pard\tqr\tx500\tx660\li660\fi-660\sl324\slmult1\sb240\partightenfactor0
+\cf3 	\'95	While waiting for an interrupt, the microcontroller can execute other tasks instead of being stuck in a polling loop, improving system efficiency.\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f1\b\fs30 \cf3 -> Understanding Debounce Issue
+\f2\b0\fs28 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f1\b\fs26 \cf3 1. What is a debounce issue and why do we need to get rid of it?
+\f2\b0\fs28 \cf3 \
+\
+Debounce is the unwanted repeated triggering of a button or switch due to 
+\f4\b \cf3 mechanical vibrations
+\f2\b0 \cf3  or 
+\f4\b \cf3 electrical noise
+\f2\b0 \cf3 . When a mechanical switch is pressed or released, it doesn\'92t transition cleanly between ON and OFF states. Instead, it 
+\f4\b \cf3 bounces
+\f2\b0 \cf3  between states multiple times before settling.\
+\
+\uc0\u55357 \u56393  
+\f4\b \cf3 Why remove it?
+\f2\b0 \cf3 \
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf3 	\'95	If not handled, it can cause 
+\f4\b false triggers
+\f2\b0  in microcontroller-based systems.\
+	\'95	It can lead to incorrect readings, 
+\f4\b double button presses
+\f2\b0  when only one was intended, or 
+\f4\b unexpected behavior
+\f2\b0  in a system.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\uc0\u11835 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f2\fs28 \cf3 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f1\b\fs26 \cf3 2. Where can debounce issues be critical?
+\f2\b0\fs28 \cf3 \
+\
+Debounce issues can be 
+\f4\b \cf3 dangerous
+\f2\b0 \cf3  or 
+\f4\b \cf3 problematic
+\f2\b0 \cf3  in:\
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf3 	\'95	
+\f4\b Embedded Systems & IoT
+\f2\b0  \'96 Sensors, control buttons, and keypads in smart devices.\
+	\'95	
+\f4\b Medical Devices
+\f2\b0  \'96 False signals from switches can lead to incorrect medication dosage or device operation.\
+	\'95	
+\f4\b Automotive Industry
+\f2\b0  \'96 Button-controlled functions (e.g., cruise control, ignition) can misfire.\
+	\'95	
+\f4\b Industrial Control Systems
+\f2\b0  \'96 Critical machines that rely on push-button inputs can malfunction.\
+	\'95	
+\f4\b Gaming & Keyboards
+\f2\b0  \'96 Multiple unintended keypresses ruin user experience.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\uc0\u11835 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f2\fs28 \cf3 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f1\b\fs26 \cf3 3. Why does debounce occur? Is it a compiler error, logical error, or hardware issue?
+\f2\b0\fs28 \cf3 \
+\
+Debounce is 
+\f4\b \cf3 not a compiler error
+\f2\b0 \cf3  or 
+\f4\b \cf3 logical mistake
+\f2\b0 \cf3  but rather a 
+\f4\b \cf3 hardware issue
+\f2\b0 \cf3  due to the nature of mechanical switches.\
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf3 	\'95	
+\f4\b Mechanical bouncing
+\f2\b0  \'96 When you press/release a button, tiny metal contacts inside 
+\f4\b vibrate
+\f2\b0  before settling, causing rapid ON/OFF signals.\
+	\'95	
+\f4\b Electrical noise
+\f2\b0  \'96 Random fluctuations in voltage can mimic extra button presses.\
+	\'95	
+\f4\b Not related to microcontroller quality
+\f2\b0  \'96 Even expensive microcontrollers experience debounce if not handled properly.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\uc0\u11835 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f2\fs28 \cf3 \
+
+\f1\b\fs30 How to Fix Debounce?
+\f2\b0\fs28 \
+\pard\tqr\tx260\tx420\li420\fi-420\sl324\slmult1\sb240\partightenfactor0
+
+\f3 \cf3 	1.	
+\f4\b Hardware Solutions:
+\f2\b0 \
+\pard\tqr\tx500\tx660\li660\fi-660\sl324\slmult1\sb240\partightenfactor0
+\cf3 	\'95	Use a 
+\f4\b capacitor (RC circuit)
+\f2\b0  to filter out bouncing.\
+	\'95	Use 
+\f4\b Schmitt triggers
+\f2\b0  to clean up signals.\
+	\'95	Use switches with built-in debounce mechanisms.\
+\pard\tqr\tx260\tx420\li420\fi-420\sl324\slmult1\sb240\partightenfactor0
+
+\f3 \cf3 	2.	
+\f4\b Software Solutions:
+\f2\b0 \
+\pard\tqr\tx500\tx660\li660\fi-660\sl324\slmult1\sb240\partightenfactor0
+\cf3 	\'95	
+\f4\b Delay-based debounce:
+\f2\b0  Ignore button state changes for a few milliseconds after detecting a press.\
+	\'95	
+\f4\b State machine approach:
+\f2\b0  Track the button state and only confirm a press after stable readings.\
+	\'95	
+\f4\b Interrupt + Timer-based debounce:
+\f2\b0  More efficient than polling-based methods.\
+\
+->
+\f1\b\fs30 Running the Code Without Interrupts
+\f2\b0\fs28 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+\cf3 \
+When you run your lab work without using interrupts, you likely have to rely on 
+\f4\b \cf3 polling
+\f2\b0 \cf3 , where the microcontroller continuously checks for an event (e.g., button press, sensor input).\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\uc0\u11835 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f2\fs28 \cf3 \
+
+\f1\b\fs30 Observations (Before Using Interrupts)
+\f2\b0\fs28 \
+\pard\tqr\tx260\tx420\li420\fi-420\sl324\slmult1\sb240\partightenfactor0
+
+\f3 \cf3 	1.	
+\f4\b Higher CPU Usage:
+\f2\b0 \
+\pard\tqr\tx500\tx660\li660\fi-660\sl324\slmult1\sb240\partightenfactor0
+\cf3 	\'95	The microcontroller keeps checking the sensor/button in a loop, wasting processing time even when nothing happens.\
+\pard\tqr\tx260\tx420\li420\fi-420\sl324\slmult1\sb240\partightenfactor0
+
+\f3 \cf3 	2.	
+\f4\b Slower Response Time:
+\f2\b0 \
+\pard\tqr\tx500\tx660\li660\fi-660\sl324\slmult1\sb240\partightenfactor0
+\cf3 	\'95	If your code has other tasks, the button press or sensor event might 
+\f4\b not be detected immediately
+\f2\b0  because the MCU is busy with other instructions.\
+\pard\tqr\tx260\tx420\li420\fi-420\sl324\slmult1\sb240\partightenfactor0
+
+\f3 \cf3 	3.	
+\f4\b Potential Delay in Execution:
+\f2\b0 \
+\pard\tqr\tx500\tx660\li660\fi-660\sl324\slmult1\sb240\partightenfactor0
+\cf3 	\'95	If there\'92s a long-running task (like a delay or loop iteration), the event detection may be 
+\f4\b delayed or even missed
+\f2\b0 .\
+\pard\tqr\tx260\tx420\li420\fi-420\sl324\slmult1\sb240\partightenfactor0
+
+\f3 \cf3 	4.	
+\f4\b Inefficient Power Consumption:
+\f2\b0 \
+\pard\tqr\tx500\tx660\li660\fi-660\sl324\slmult1\sb240\partightenfactor0
+\cf3 	\'95	The MCU keeps running even when there\'92s no event, preventing low-power modes.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\uc0\u11835 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f2\fs28 \cf3 \
+
+\f1\b\fs30 Observations (After Using Interrupts)
+\f2\b0\fs28 \
+\pard\tqr\tx260\tx420\li420\fi-420\sl324\slmult1\sb240\partightenfactor0
+
+\f3 \cf3 	1.	
+\f4\b More Efficient CPU Usage:
+\f2\b0 \
+\pard\tqr\tx500\tx660\li660\fi-660\sl324\slmult1\sb240\partightenfactor0
+\cf3 	\'95	The microcontroller executes other tasks and only responds when an event happens.\
+\pard\tqr\tx260\tx420\li420\fi-420\sl324\slmult1\sb240\partightenfactor0
+
+\f3 \cf3 	2.	
+\f4\b Faster and More Accurate Event Detection:
+\f2\b0 \
+\pard\tqr\tx500\tx660\li660\fi-660\sl324\slmult1\sb240\partightenfactor0
+\cf3 	\'95	The event is detected 
+\f4\b instantly
+\f2\b0 , even if the MCU was performing another task.\
+\pard\tqr\tx260\tx420\li420\fi-420\sl324\slmult1\sb240\partightenfactor0
+
+\f3 \cf3 	3.	
+\f4\b Reduced Processing Overhead:
+\f2\b0 \
+\pard\tqr\tx500\tx660\li660\fi-660\sl324\slmult1\sb240\partightenfactor0
+\cf3 	\'95	No need to constantly check the input, reducing unnecessary processing cycles.\
+\pard\tqr\tx260\tx420\li420\fi-420\sl324\slmult1\sb240\partightenfactor0
+
+\f3 \cf3 	4.	
+\f4\b Better Power Management:
+\f2\b0 \
+\pard\tqr\tx500\tx660\li660\fi-660\sl324\slmult1\sb240\partightenfactor0
+\cf3 	\'95	The MCU can enter sleep mode and wake up only when needed, improving efficiency (especially in IoT applications).\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\uc0\u11835 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f2\fs28 \cf3 \
+
+\f1\b\fs30 Conclusion
+\f2\b0\fs28 \
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf3 	\'95	
+\f4\b Without Interrupts:
+\f2\b0  The microcontroller 
+\f4\b wastes time
+\f2\b0  constantly checking for an event and may miss fast signals.\
+	\'95	
+\f4\b With Interrupts:
+\f2\b0  The system 
+\f4\b reacts instantly
+\f2\b0 , improving performance, accuracy, and power efficiency.\
+\
+}
