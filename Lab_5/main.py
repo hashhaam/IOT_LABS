@@ -8,7 +8,7 @@ from neopixel import NeoPixel
 #from machine import Pin, I2C, Timer
 import ssd1306
 
-WIFI_SSID = 'Shaam'
+WIFI_SSID = 'Aam'
 WIFI_PASS = 'hehe4Times'
 BLYNK_AUTH = "lChG32Oi_aL5RRQEttnIt9We0CC-reLO"
 
