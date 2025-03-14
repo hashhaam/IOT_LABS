@@ -8,8 +8,8 @@ from dht import DHT11
 from ssd1306 import SSD1306_I2C
 
 # WiFi Configuration
-SSID = "Shaam"
-PASSWORD = "hehe4Times"
+SSID = "its_abdullah"
+PASSWORD = "Iamfoodie"
 sta = network.WLAN(network.STA_IF)
 sta.active(True)
 sta.connect(SSID, PASSWORD)
