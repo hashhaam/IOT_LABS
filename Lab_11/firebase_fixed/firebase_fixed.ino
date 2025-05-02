@@ -31,6 +31,15 @@ void setup() {
   
   initDHT();
   connectWiFi();
+
+  configTime(18000, 0, "pool.ntp.org", "time.nist.gov"); // GMT+5 (Pakistan Time = 5*3600 = 18000)
+
+  Serial.print("Waiting for time sync");
+  while (time(nullptr) < 100000) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("\nTime synced!");
 }
 
 // ======= Main Loop ======= //
