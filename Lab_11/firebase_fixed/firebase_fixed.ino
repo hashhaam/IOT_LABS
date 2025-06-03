@@ -3,7 +3,7 @@
 #include <DHT.h>
 
 // WiFi Credentials
-const char* ssid = "Shaam";
+const char* ssid = "H.";
 const char* password = "sarkari0";
 
 // Firebase Configuration
